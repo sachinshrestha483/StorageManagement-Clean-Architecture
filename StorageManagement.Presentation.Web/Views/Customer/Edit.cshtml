@@ -1,0 +1,81 @@
+﻿@model UpsertCustomerViewModel
+
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+<div class="container border  rounded p-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 class="text-secondary">@ViewData["Title"]</h5>
+        <a asp-action="Index" asp-controller="Customer" class="btn btn-primary btn-sm">Back</a>
+    </div>
+</div>
+
+<div class="mt-4">
+    <form asp-controller="Customer" asp-action="Edit">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" type="text">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="Pan" class="form-label"></label>
+                    <input asp-for="Pan" class="form-control" type="text">
+                    <span asp-validation-for="Pan" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="ContactPersonName" class="form-label"></label>
+                    <input asp-for="ContactPersonName" class="form-control" type="text">
+                    <span asp-validation-for="ContactPersonName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="ContactPersonPhone" class="form-label"></label>
+                    <input asp-for="ContactPersonPhone" class="form-control" type="text">
+                    <span asp-validation-for="ContactPersonPhone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="AddressStreet" class="form-label"></label>
+                    <input asp-for="AddressStreet" class="form-control" type="text">
+                    <span asp-validation-for="AddressStreet" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="AddressCity" class="form-label"></label>
+                    <input asp-for="AddressCity" class="form-control" type="text">
+                    <span asp-validation-for="AddressCity" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="AddressPincode" class="form-label"></label>
+                    <input asp-for="AddressPincode" class="form-control" type="text">
+                    <span asp-validation-for="AddressPincode" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="d-flex flex-row justify-content-end">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

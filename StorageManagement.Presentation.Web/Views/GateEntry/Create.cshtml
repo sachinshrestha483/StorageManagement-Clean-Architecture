@@ -1,0 +1,60 @@
+﻿@model UpsertGateEntryViewModel
+@using StorageManagement.Core.Domain.Common.Enumerations
+
+@{
+    ViewData["Title"] = "Create Gate Entry";
+}
+
+<div class="container border  rounded p-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 class="text-secondary">@ViewData["Title"]</h5>
+        <a asp-action="Index" asp-controller="GateEntry" class="btn btn-primary btn-sm">Back</a>
+    </div>
+</div>
+
+<div class="mt-4">
+    <form asp-controller="GateEntry" asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="EntryReference" class="form-label"></label>
+                    <input asp-for="EntryReference" class="form-control" type="text" >
+                    <span asp-validation-for="EntryReference" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="EntryType" class="form-label"></label>
+                    <select asp-for="EntryType" class="form-select" asp-items="Html.GetEnumSelectList<EntryType>()"></select>
+                    <span asp-validation-for="EntryType" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="CheckIn" class="form-label"></label>
+                    <input asp-for="CheckIn" class="form-control" type="datetime-local">
+                    <span asp-validation-for="CheckIn" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mb-3">
+                    <label asp-for="CheckOut" class="form-label"></label>
+                    <input asp-for="CheckOut" class="form-control" type="datetime-local">
+                    <span asp-validation-for="CheckOut" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-end">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
