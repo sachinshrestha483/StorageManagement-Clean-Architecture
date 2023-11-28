@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using StorageManagement.Core.Domain.Entities;
 using StorageManagement.Infrastructure.Persistence.Configurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace StorageManagement.Infrastructure.Persistence.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -21,6 +22,8 @@ namespace StorageManagement.Infrastructure.Persistence.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfiguration(new GateEntryConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
 

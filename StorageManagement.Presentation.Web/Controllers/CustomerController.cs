@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StorageManagement.Core.Application.Services.Abstractions;
 using StorageManagement.Core.Application.Services.Implementations;
 using StorageManagement.Core.Domain.Entities;
@@ -7,6 +8,7 @@ using StorageManagement.Presentation.Web.Models.ViewModels;
 
 namespace StorageManagement.Presentation.Web.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StorageManagement.Core.Application.Services.Abstractions;
 using StorageManagement.Core.Application.Services.Implementations;
 using StorageManagement.Core.Domain.Entities;
@@ -7,6 +8,7 @@ using System.Net.WebSockets;
 
 namespace StorageManagement.Presentation.Web.Controllers
 {
+    [Authorize]
     public class GateEntryController : Controller
     {
         private readonly IGateEntryService _gateEntryService;
@@ -40,7 +42,7 @@ namespace StorageManagement.Presentation.Web.Controllers
             if (ModelState.IsValid)
             {
                 _gateEntryService.Create(new GateEntry(entryReference: viewModel.EntryReference, entryType: viewModel.EntryType,
-                                                        checkIn: viewModel.CheckIn, checkOut: viewModel.CheckOut), "user_1"
+                                                        checkIn: viewModel.CheckIn, checkOut: viewModel.CheckOut), User.Identity.Name
                 );
 
                 _gateEntryService.Save();
@@ -84,7 +86,7 @@ namespace StorageManagement.Presentation.Web.Controllers
 
                 gateEntry.Update(entryReference:viewModel.EntryReference,checkIn:viewModel.CheckIn,checkOut:viewModel.CheckOut,entryType:viewModel.EntryType);
 
-                _gateEntryService.Update(gateEntry,"user_1");
+                _gateEntryService.Update(gateEntry,User.Identity.Name);
                 _gateEntryService.Save();
 
                 return RedirectToAction(nameof(Index));
